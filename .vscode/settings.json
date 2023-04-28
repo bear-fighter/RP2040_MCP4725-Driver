@@ -1,0 +1,41 @@
+{
+    // These settings tweaks to the cmake plugin will ensure
+    // that you debug using cortex-debug instead of trying to launch
+    // a Pico binary on the host
+    "cmake.statusbar.advanced": {
+        "debug": {
+            "visibility": "hidden"
+        },
+        "launch": {
+            "visibility": "hidden"
+        },
+        "build": {
+            "visibility": "default"
+        },
+        "buildTarget": {
+            "visibility": "hidden"
+        }
+    },
+    "cmake.buildBeforeRun": true,
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "files.associations": {
+        "stdio.h": "c",
+        "uart.h": "c",
+        "stdlib.h": "c",
+        "binary_info.h": "c",
+        "gpio.h": "c",
+        "pico.h": "c",
+        "dreq.h": "c"
+    },
+    "cortex-debug.variableUseNaturalFormat": true,
+    "svn.delete.ignoredRulesForDeletedFiles": [
+        "build/CMakeFiles/md_grpctrl.dir/compiler_depend.internal",
+        "build/CMakeFiles/md_grpctrl.dir/depend.internal",
+        "build/pico-sdk/src/rp2_common/boot_stage2/CMakeFiles/bs2_default.dir/depend.internal",
+        "build/.cmake/api/v1/reply/cache-v2-dad164bbf74090fd6aa9.json",
+        "build/.cmake/api/v1/reply/codemodel-v2-9e2616cb23e1b1b601bf.json",
+        "build/.cmake/api/v1/reply/index-2023-03-23T19-55-32-0210.json",
+        "build/.cmake/api/v1/reply/target-ELF2UF2Build-Debug-22f4533957bb97bcdf5d.json",
+        "build/.cmake/api/v1/reply/target-md_grpctrl-Debug-31f7b462f95e39e81239.json"
+    ]
+}
