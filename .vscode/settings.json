@@ -25,7 +25,8 @@
         "binary_info.h": "c",
         "gpio.h": "c",
         "pico.h": "c",
-        "dreq.h": "c"
+        "dreq.h": "c",
+        "rp2040_mcp4725.h": "c"
     },
     "cortex-debug.variableUseNaturalFormat": true,
     "svn.delete.ignoredRulesForDeletedFiles": [
