@@ -38,13 +38,13 @@ typedef struct mcp4725_data {
     uint16_t    dacval  : 12;
 } mcp4725_data;
 
-typedef struct mcp4725 {
+typedef struct MCP4725 {
     int addr;
     float vset;             // Strictly uni-directional; only populated from device reads
     i2c_inst_t* chan;       // Set only during intialization
     mcp4725_data reg;       // Strictly uni-directional; only populated from device reads
     mcp4725_data eeprom;    // Strictly uni-directional; only populated from device reads
-} mcp4725;
+} MCP4725;
 
 // Convert Voltage Setpoint to 12-bit Integer
 uint16_t mcp4725_V2Int(float v);
@@ -53,25 +53,25 @@ uint16_t mcp4725_V2Int(float v);
 float mcp4725_Int2V(uint16_t val);
 
 // Initialize instance of mcp4725 object
-mcp4725 mcp4725_Init(int address, int voltageset, i2c_inst_t* i2c_chan);
+MCP4725 mcp4725_Init(int address, int voltageset, i2c_inst_t* i2c_chan);
 
 // Sends General Call Reset Command (Section 7.3.1)
 // Useful for ensuring DAC regsiter is loaded from EEPROM on Startup
-void mcp4725_GeneralCallReset(mcp4725* dev);
+void mcp4725_GeneralCallReset(MCP4725* dev);
 
 // Read from EEPROM and DAC Regsiter (Section 6.2)
 // Updates data to mcp4725 object passed as agrument
 // returns 1 if read is sucessful; returns 0 otherwise
-uint8_t mcp4725_Read(mcp4725* dev);
+uint8_t mcp4725_Read(MCP4725* dev);
 
 // Fast Mode Write (Section 6.1.1)
-void mcp4725_FastWrite(mcp4725* dev, mcp4725_data dat);
+void mcp4725_FastWrite(MCP4725* dev, mcp4725_data dat);
 
 // Set Voltage and Transmit
 // Reads the voltage back from the device and returns it as a value
-float mcp4725_VSet(mcp4725* dev, float volt);
+float mcp4725_VSet(MCP4725* dev, float volt);
 
 // Write DAC + EEPROM (Section 6.1.2 +Section 6.1.3)
-void mcp4725_Write(mcp4725* dev, mcp4725_data dat, bool EEPROM);
+void mcp4725_Write(MCP4725* dev, mcp4725_data dat, bool EEPROM);
 
 #endif

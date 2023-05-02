@@ -7,4 +7,6 @@ add_library(
     rp2040_mcp4725.c
 )
 
+target_include_directories(mcp4725 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
 target_link_libraries(mcp4725 pico_stdlib hardware_gpio hardware_i2c)

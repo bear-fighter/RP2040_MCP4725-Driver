@@ -12,19 +12,19 @@ float mcp4725_Int2V(uint16_t val) {
     return MCP4725_DAC_VCC * ((float) val / (float) MCP4725_DAC_VALS);
 }
 
-mcp4725 mcp4725_Init(int address, int voltageset, i2c_inst_t* i2c_chan) {
+MCP4725 mcp4725_Init(int address, int voltageset, i2c_inst_t* i2c_chan) {
     mcp4725_data dummydata = {0};
-    mcp4725 dev = {.addr = address, .chan = i2c_chan, .reg = dummydata, .eeprom = dummydata, .vset = voltageset};
+    MCP4725 dev = {.addr = address, .chan = i2c_chan, .reg = dummydata, .eeprom = dummydata, .vset = voltageset};
 
     return dev;
 }
 
-void mcp4725_GeneralCallReset(mcp4725* dev) {
+void mcp4725_GeneralCallReset(MCP4725* dev) {
     uint8_t msg = MCP4725_GEN_CALL_RST_CMD;
     i2c_write_timeout_us(dev->chan, MCP4725_GEN_CALL_ADDR, &msg, 1, true, MCP4725_TIMEOUT_US);
 }
 
-uint8_t mcp4725_Read(mcp4725* dev) {
+uint8_t mcp4725_Read(MCP4725* dev) {
     uint8_t rec_bytes[5] = {0};
 
     i2c_read_timeout_us(dev->chan, dev->addr, rec_bytes, 5, true, MCP4725_TIMEOUT_US);
@@ -38,7 +38,7 @@ uint8_t mcp4725_Read(mcp4725* dev) {
     return 1;
 }
 
-void mcp4725_FastWrite(mcp4725* dev, mcp4725_data dat) {
+void mcp4725_FastWrite(MCP4725* dev, mcp4725_data dat) {
     uint8_t send_bytes[4] = {0};
 
     send_bytes[0] |= MCP4725_FASTMODECMD << 6;
@@ -54,7 +54,7 @@ void mcp4725_FastWrite(mcp4725* dev, mcp4725_data dat) {
     i2c_write_timeout_us(dev->chan, dev->addr, send_bytes, 4, true, MCP4725_TIMEOUT_US);
 }
 
-void mcp4725_Write(mcp4725* dev, mcp4725_data dat, bool EEPROM) {
+void mcp4725_Write(MCP4725* dev, mcp4725_data dat, bool EEPROM) {
     uint8_t send_bytes[6] = {0};
     uint8_t wcmd;
 
