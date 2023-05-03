@@ -46,7 +46,7 @@ void mcp4725_FastWrite(MCP4725* dev, mcp4725_data dat) {
 
     send_bytes[0] |= dat.dacval >> 8;
 
-    send_bytes[1] |= dat.dacval << 4;
+    send_bytes[1] |= dat.dacval;
 
     send_bytes[2] = send_bytes[0];
     send_bytes[3] = send_bytes[1];

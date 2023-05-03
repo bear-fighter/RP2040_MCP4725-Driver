@@ -69,6 +69,7 @@ void mcp4725_FastWrite(MCP4725* dev, mcp4725_data dat);
 
 // Set Voltage and Transmit
 // Reads the voltage back from the device and returns it as a value
+// ** NOT IMPLEMENTED **
 float mcp4725_VSet(MCP4725* dev, float volt);
 
 // Write DAC + EEPROM (Section 6.1.2 +Section 6.1.3)
